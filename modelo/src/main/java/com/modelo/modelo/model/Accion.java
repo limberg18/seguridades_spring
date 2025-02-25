@@ -1,5 +1,6 @@
 package com.modelo.modelo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,15 +12,16 @@ import lombok.*;
 @Entity
 @Table(name = "accion")
 public class Accion {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int  accionId;
+    private int  accionId;
     @Column(length = 50,nullable = false)
-   private String nombre;
-    
-   @ManyToOne(fetch = FetchType.EAGER)
-   @JoinColumn(name="rolid" ,nullable = false)
+    private String nombre;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="rolid", nullable = false)
+    @JsonBackReference
     private Rol rol;
 
 
@@ -47,5 +49,5 @@ public class Accion {
         this.nombre = nombre;
     }
 
-   
+
 }
